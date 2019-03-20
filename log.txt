@@ -1,0 +1,12 @@
+2019-03-20 17:09:38,161 - INFO - 
+ Parser of E:\开发\flask\pdfSim\static\hetong.pdf is initializing...
+2019-03-20 17:09:39,467 - INFO - Parser of E:\开发\flask\pdfSim\static\hetong.pdf is complete.
+
+2019-03-20 17:14:09,937 - INFO - 
+ Parser of E:\开发\flask\pdfSim\static\hetong.pdf is initializing...
+2019-03-20 17:14:10,831 - INFO - Parser of E:\开发\flask\pdfSim\static\hetong.pdf is complete.
+
+2019-03-20 17:34:49,288 - INFO - 
+ Parser of E:\开发\flask\pdfSim\static\hetong.pdf is initializing...
+2019-03-20 17:34:50,112 - INFO - Parser of E:\开发\flask\pdfSim\static\hetong.pdf is complete.
+

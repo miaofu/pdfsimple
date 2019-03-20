@@ -1,0 +1,35 @@
+{% extends 'layout.html' %} 
+{% import "bootstrap/wtf.html" as wtf %}
+{% block style %}
+
+
+<style>
+</style>
+{% endblock %} 
+
+{% block body %}
+<ul>
+<li><h3>文件上传示例</h3>
+
+
+      
+      <form action="/api" enctype='multipart/form-data' method='POST'>
+         <input type="file" name="file">
+         <input type="submit" value="上传">
+     </form>
+</li>
+			<li> <h3>调用API解析文件</h3>
+				<div>
+				$curl -u username:password -i -X POST -F "file=@filename.pdf" http://pdf.simplified.org.cn:3000/api/vbeta
+			</div>
+			</li>
+<li>
+	<h3>试用方式</h3>：系统内测中，目前暂不支持用户注册，需要试用请通过13262897337@163.com获取试用账户！
+
+</li>
+<ul>
+<br><br><br><br>
+
+
+
+{% endblock %}
