@@ -155,10 +155,12 @@
             {% endif %}
         </div>
         <h1>PDF<span style="font-family:JetLinkMediumOldStamp451548;color:#fff;position:relative;top:-1px;font-size:35px;"><span style="margin-left:10px;margin-right:5px;"></span>解析</span></h1>
-        <p>PDFPARSER是一款pdf内容识别软件，提取其中文本内容，标题和表格，将其转化为标记的文本文件，并进而进行下一步的内容分析或者数据分析。PDFPARSER的关键特征是
-准确识别pdf中的表格元素，识别其表格中的每一行每一列，并将其采取“,”进行分割;
-采取API的方式进行调用，支持编程的方式进行大批量的pdf文件处理;
-我们相信未来大规模处理PDF文件会成为常态，PDFPARSER愿与你同行</p>
+        <p>PDFPARSER是一款pdf内容识别软件，提取其中文本内容，标题和表格，将其转化为标记的文本文件，并进而进行下一步的内容分析或者数据分析。PDFPARSER的关键特征是<li>
+准确识别pdf中的表格元素，识别其表格元素之间逻辑关系;支持无线框表格识别。</li>
+<li>采取API的方式进行调用，支持编程的方式进行大批量的pdf文件处理。</li>
+</p>
+<p>PDFPARSER的设计之初是为了大规模PDF文件表格信息抽取需要。最初的应用场景从大量的上市公司公告PDF文件进行表格信息提取，并从中整理相关的数据以便于进一步的对公司业务进行定量分析。但随着各个行业对于数据的深度整合的需要，PDFPARSER可以应用在银行，保险，投行，审计，咨询，医疗等更多行业场景。</p>
+
     </div>
 {% for message in get_flashed_messages() %}
     {{ message  }}

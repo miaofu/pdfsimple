@@ -47,12 +47,50 @@ def logout():
 	session.pop('current_user')
 	return render_template('logout.html')
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+	form = RegisterForm()
+	if request.method == 'POST':
+		user_id = form.user_id.data 
+		user = query_user(user_id)
+		if user is not None:
+			flash('用户名已被注册!')
+		else:
+			if form.password.data != form.repassword.data:
+				flash('密码前后不一致')
+			else:
 
+				#insert_user( )
+				users = {
+				'id':form.user_id.data, 
+				'password':form.password.data,
+				'Role':'user',
+				'TotalCur':20,
+				'company':form.company.data,
+				'info':form.info.data
+				}
+				insert_user( users )
+				inser_user_api(users)
+				#print (user_info)
+
+				session['current_user']= user_id
+				print ('login current_user:',user_id)
+				return redirect(url_for('user') )
+	# GET 请求
+	return render_template('register.html',form=form)
 
 ## 3. 用户
 @app.route('/user', methods=['GET'])
 def user():
-	return render_template('user.html')
+	if 'current_user' in session:
+		userapi = get_user_api_left(session['current_user'])
+		userlog = get_user_api_log(session['current_user'] )
+	else:
+		userapi = {}
+		userlog = []
+
+	#print ('userapi',userapi)
+	return render_template('user.html',userapi=userapi,userlog = userlog)
 
 ## 4. 标注语料管理；管理员权限;API 方式运作
 
@@ -78,6 +116,7 @@ def apiLog(line):
     row.extend(line)
     flog.write('\t'.join(row)+'\n')
     flog.close()
+
 ####5. 
 from werkzeug.utils import secure_filename
 from flask import send_file, send_from_directory
@@ -93,7 +132,14 @@ def api():
 	if request.method == 'POST' and ('current_user' not in session):
 		flash(u'你没有注册！')
 		return u'未注册'
-	if request.method == 'POST' and ('current_user' in session):
+
+	if request.method == 'POST' and ('current_user' in session) :
+		userapi = get_user_api_left(session['current_user'])
+
+		left_api = userapi['ApiCurLeft']
+		if left_api<=0:
+			flash(u'API调用份额使用完了')
+			return render_template('api.html')
 		f = request.files['file']
 		filename = secure_filename(f.filename)
 		f.save('static/'+str(filename))
@@ -104,6 +150,8 @@ def api():
 		directory ='static'
 		result = Parser('static/'+str(filename )) 
 		result.to_csv(directory)
+		add_user_api(session['current_user'])
+
 		filename  = filename[:-4]+'.csv'
 		response = make_response(send_from_directory(directory, filename, as_attachment=True))
 		response.headers["Content-Disposition"] = "attachment; filename={}".format(filename.encode().decode('latin-1'))
@@ -112,5 +160,5 @@ def api():
 		return render_template('api.html')
 
 if __name__ == '__main__':
-	#app.run(debug=True)
-	app.run(host='0.0.0.0',port=3000)
+	app.run(debug=True)
+	#app.run(host='0.0.0.0',port=3000)

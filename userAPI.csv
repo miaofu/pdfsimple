@@ -1,0 +1,5 @@
+id,TotalCur,ApiCurUse,ApiCurLeft
+test,100,2,98
+admin,10000,3,9997
+tt,20,1,19
+test,20,0,20

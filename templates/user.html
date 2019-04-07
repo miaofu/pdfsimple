@@ -3,6 +3,24 @@
 </style>
 {% endblock %} {% block body %}
     <h1>Hello, {% if 'current_user' in session %}{{ session['current_user'] }}{% else %}Stranger{% endif %}!</h1>
+    <div>
+    	<ul>
+    	{% if 'current_user' in session %}
+    	<li><h3>份额使用</h3></li>
+    	{% for k in userapi.keys() %}
+    	"{{k}}":{{userapi[k]}},
+    	{% endfor %}
+    	<li><h3>使用记录</h3></li>
+    	{% for log in userlog %}
+    	<br>
+    	{% for k in log %}
+    	"{{k}}":{{log[k]}},
+    	{% endfor %}
+    	{% endfor %}
+    	{% endif %}
+    	
+    </ul>
+    </div>
 
 
 {% endblock %}

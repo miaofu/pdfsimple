@@ -1,0 +1,5 @@
+id,username,password,Role,TotalCur,info,company
+admin,admin,admin,admin,10000,'admin','FG'
+marry,,marry,user,20,simple-use,'FG'
+tt,,tt,user,20,dfd,''
+test,,test,user,20,test,test
