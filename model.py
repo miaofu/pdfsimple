@@ -76,7 +76,7 @@ def get_user_api_log(user_id):
 	#
 	if not os.path.exists('apiLog.log'):
 		return []
-	
+
 	data = pd.read_csv('apiLog.log',sep='\t')
 	data['id'] = data.index
 	sdata = data.loc[data['user']==user_id]
@@ -91,5 +91,5 @@ def get_user_api_log(user_id):
 #add_user_api('admin')	
 #print get_user_api_left('admin')
 #get_user_api_log('admin')
-user = {'id':'','username':'','password':'','Role':'','TotalCur':10}
-insert_user(user)
+#user = {'id':'','username':'','password':'','Role':'','TotalCur':10}
+#insert_user(user)
