@@ -74,6 +74,9 @@ def get_user_api_left(user_id):
 
 def get_user_api_log(user_id):
 	#
+	if not os.path.exists('apiLog.log'):
+		return []
+	
 	data = pd.read_csv('apiLog.log',sep='\t')
 	data['id'] = data.index
 	sdata = data.loc[data['user']==user_id]
